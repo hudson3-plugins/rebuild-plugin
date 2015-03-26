@@ -24,18 +24,7 @@
  */
 package com.sonyericsson.rebuild;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.ServletException;
-
-import org.kohsuke.stapler.Stapler;
-import org.kohsuke.stapler.StaplerRequest;
-import org.kohsuke.stapler.StaplerResponse;
-
 import hudson.matrix.MatrixRun;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.Action;
@@ -50,6 +39,15 @@ import hudson.model.ParametersDefinitionProperty;
 import hudson.model.PasswordParameterValue;
 import hudson.model.RunParameterValue;
 import hudson.model.StringParameterValue;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.ServletException;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.kohsuke.stapler.Stapler;
+import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerResponse;
 
 
 /**
@@ -200,7 +198,7 @@ public class RebuildAction implements Action {
           response) throws ServletException, IOException, InterruptedException {
         getProject().checkPermission(AbstractProject.BUILD);
         Hudson.getInstance().getQueue().schedule(currentBuild.getProject(), 0, null,
-                new CauseAction(new Cause.UserIdCause()));
+                new CauseAction(new Cause.UserCause()));
         response.sendRedirect("../../");
    }
 
@@ -241,7 +239,7 @@ public class RebuildAction implements Action {
                 }
             }
             Hudson.getInstance().getQueue().schedule(build.getProject(), 0, new ParametersAction(values),
-                    new CauseAction(new Cause.UserIdCause()));
+                    new CauseAction(new Cause.UserCause()));
             rsp.sendRedirect("../../");
         }
     }
