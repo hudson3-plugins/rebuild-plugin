@@ -10,7 +10,7 @@
 
     <groupId>org.hudsonci.plugins</groupId>
     <artifactId>rebuild</artifactId>
-    <version>1.16-h-1-SNAPSHOT</version>
+    <version>1.16-h-1</version>
     <packaging>hpi</packaging>
     <name>Rebuilder</name>
     
